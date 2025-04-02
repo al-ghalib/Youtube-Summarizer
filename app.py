@@ -10,7 +10,7 @@ import markdown
 load_dotenv()
 GENAI_API_KEY = os.getenv("GOOGLE_API_KEY")
 
-# For Streamlit Cloud, fetch from secrets
+# For Streamlit Cloud
 if not GENAI_API_KEY:
     GENAI_API_KEY = st.secrets["GOOGLE_API_KEY"]  
 
