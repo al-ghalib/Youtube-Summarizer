@@ -8,10 +8,18 @@ from fpdf import FPDF
 import markdown
 
 load_dotenv()
-
 GENAI_API_KEY = os.getenv("GOOGLE_API_KEY")
+
+# For Streamlit Cloud, fetch from secrets
 if not GENAI_API_KEY:
-    st.error("Google API Key is missing! Please check your .env file.")
+    GENAI_API_KEY = st.secrets["GOOGLE_API_KEY"]  
+
+if not GENAI_API_KEY:
+    st.error("Google API Key is missing! Please set it in Streamlit Secrets.")
+
+else:
+    st.success("Google API Key loaded successfully!")
+
 genai.configure(api_key=GENAI_API_KEY)
 
 
