@@ -17,8 +17,8 @@ YouTube Video Summarizer is a **Streamlit-based web app** that extracts transcri
 ### 1️⃣ Clone the repository
 
 ```sh
-git clone https://github.com/your-username/youtube-summarizer.git
-cd youtube-summarizer
+git clone https://github.com/al-ghalib/Youtube-Summarizer.git
+cd Youtube-Summarizer
 ```
 
 ### 2️⃣ Create a virtual environment (Optional but recommended)
