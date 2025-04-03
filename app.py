@@ -16,7 +16,6 @@ if not GENAI_API_KEY:
 
 if not GENAI_API_KEY:
     st.error("Google API Key is missing! Please set it in Streamlit Secrets.")
-
 else:
     st.success("Google API Key loaded successfully!")
 
@@ -24,7 +23,6 @@ genai.configure(api_key=GENAI_API_KEY)
 
 
 def get_video_id(youtube_url):
-    """Extracts video ID from various YouTube URL formats."""
     parsed_url = urlparse(youtube_url)
     if "youtube.com" in parsed_url.netloc:
         return parse_qs(parsed_url.query).get("v", [None])[0]
@@ -34,7 +32,6 @@ def get_video_id(youtube_url):
 
 
 def extract_transcript_details(video_id):
-    """Fetches transcript text from YouTube API."""
     try:
         transcript_text = YouTubeTranscriptApi.get_transcript(video_id)
         return " ".join([i["text"] for i in transcript_text])
@@ -43,7 +40,6 @@ def extract_transcript_details(video_id):
 
 
 def generate_gemini_content(transcript_text, summary_type):
-    """Generates a summary using Gemini AI."""
     summary_prompts = {
         "Short": "Summarize the transcript in 100 words:",
         "Medium": "Summarize the transcript in 250 words:",
@@ -56,7 +52,6 @@ def generate_gemini_content(transcript_text, summary_type):
 
 
 def save_as_pdf(summary, filename="summary.pdf"):
-    """Saves summary as a properly formatted PDF file."""
     pdf = FPDF()
     pdf.set_auto_page_break(auto=True, margin=15)
     pdf.add_page()
@@ -67,7 +62,6 @@ def save_as_pdf(summary, filename="summary.pdf"):
 
 
 def save_as_markdown(summary, filename="summary.md"):
-    """Saves summary as a Markdown file."""
     with open(filename, "w", encoding="utf-8") as f:
         f.write(markdown.markdown(summary))
     return filename
@@ -78,6 +72,7 @@ st.title("📺 YouTube Video Summarizer")
 youtube_link = st.text_input("Enter YouTube Video Link:")
 summary_type = st.selectbox("Select Summary Type:", ["Short", "Medium", "Detailed"])
 
+
 if youtube_link:
     video_id = get_video_id(youtube_link)
     if video_id:
@@ -85,29 +80,33 @@ if youtube_link:
     else:
         st.error("Invalid YouTube URL. Please enter a valid video link.")
 
+
 if st.button("Get Summary"):
     if not youtube_link:
         st.error("Please enter a YouTube video link.")
+   
     elif not video_id:
         st.error("Could not extract video ID. Please check the link format.")
+   
     else:
         with st.spinner("Extracting transcript and generating summary..."):
             transcript_text = extract_transcript_details(video_id)
+   
             if transcript_text.startswith("Error"):
                 st.error(transcript_text)
+   
             elif "No transcripts" in transcript_text:
                 st.error("No transcript available for this video!")
+   
             else:
                 summary = generate_gemini_content(transcript_text, summary_type)
                 st.markdown("## 📄 Generated Summary:")
                 st.write(summary)
                 st.success("Summary generated successfully!")
                 
-                # Save files
                 pdf_file = save_as_pdf(summary)
                 md_file = save_as_markdown(summary)
                 
-                # Download buttons
                 with open(pdf_file, "rb") as pdf:
                     st.download_button("📥 Download as PDF", pdf, file_name="summary.pdf", mime="application/pdf")
                 with open(md_file, "r", encoding="utf-8") as md:
