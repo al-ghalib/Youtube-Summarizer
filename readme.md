@@ -6,11 +6,11 @@ YouTube Video Summarizer is a **Streamlit-based web app** that extracts transcri
 
 ## 🚀 Features
 
-- 🎥 **Extract Transcripts**: Fetches YouTube video transcripts automatically.
-- 🧠 **AI-Powered Summaries**: Generates summaries using Google Gemini AI.
-- 📄 **Multiple Summary Types**: Choose between Short, Medium, and Detailed summaries.
-- 📥 **Download Options**: Save summaries as **PDF** and **Markdown** files.
-- ⚡ **Fast & Simple**: Streamlit-based UI for quick summarization.
+- **Extract Transcripts**: Fetches YouTube video transcripts automatically.
+- **AI-Powered Summaries**: Generates summaries using Google Gemini AI.
+- **Multiple Summary Types**: Choose between Short, Medium, and Detailed summaries.
+- **Download Options**: Save summaries as **PDF** and **Markdown** files.
+- **Fast & Simple**: Streamlit-based UI for quick summarization.
 
 ## 🛠️ Installation
 
@@ -61,18 +61,18 @@ Then, open the local URL provided by Streamlit in your browser.
 
 ## 🛠️ Tech Stack
 
-- **Python** 🐍
-- **Streamlit** 🚀
-- **Google Gemini AI** 🧠
-- **YouTube Transcript API** 📜
-- **FPDF** (for PDF generation) 📄
+- **Python** 
+- **Streamlit** 
+- **Google Gemini AI** 
+- **YouTube Transcript API** 
+- **FPDF** (for PDF generation) 
 
 ## 🤖 Future Improvements
 
-- 🔄 Support for multilingual transcripts.
-- 🎨 Improved UI design.
-- 📊 Analytics on summary performance.
-- 🔧 Fine-tuning the AI model for better accuracy.
+- Support for multilingual transcripts.
+- Improved UI design.
+- Analytics on summary performance.
+- Fine-tuning the AI model for better accuracy.
 
 ## 📜 License
 
